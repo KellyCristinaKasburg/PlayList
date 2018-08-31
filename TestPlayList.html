@@ -19,15 +19,6 @@
      width:25px;
      }
 
-     .avancar {
-     background-color: white;
-     border: none;
-     color: transparent;
-     background-image: url("skip-track.png");
-     height:17.3px;
-     width:17px;
-     }
-
     </style>
 </head>
 <body>
@@ -52,22 +43,13 @@
                     <div class="parte2" id="playInArea">
                     </div>
                 </aside>
-
-                <div class="coluna3">
-                    <a href="#ytplayer" onclick="play()"><button class="avancar"></button></a>
-                </div>
             </section>
-
-            <footer class="footer">
-                <p>© 2018 - PlayList</p>
-            </footer>
-
         </div>
 
     <div id="playerArea"></div>
 
     <script>
-
+          fila = new Queue();
        function playInArea(videoId) {
            var playerArea = document.getElementById('playerArea');
            playerArea.innerHTML = '';
@@ -106,12 +88,19 @@
             var videoId = getVideoId(linka.value);
             playInArea(videoId);
         }
+
         function getVideoId(url){            
            return url.substring(
                url.indexOf("=") + 1,
                url.length);           
         }
-        
+
+        function play() {
+                var primeira = fila.mostrar();
+                fila.add();
+                playInArea2(primeira);
+                console.log(primeira);
+        }
     </script>
 </body>
 </html>
