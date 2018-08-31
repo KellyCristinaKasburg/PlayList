@@ -1,28 +1,56 @@
 function Queue() {
 
-	let items = [];
+let itens = [];
+var inicio, fim, tamanho, qtd;
 
-    this.enqueue = function (element) {
-        items.push(element);
+    this.Queue = function(){
+        inicio = fim = -1;
+        tamanho = 100;
+        itens = itens[tamanho];
+        qtd = 0;
+    }
+    
+    this.QueueVazia = function(){
+        if(qtd == 0){
+            return true;
+        } else{
+            return false;
+        }
     }
 
-    this.dequeue = function () {
-        return items.shift();
+    this.Cheia = function(){
+        if(qtd == tamanho - 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    this.front = function () {
-        return items[0];
+    this.add = function(element, var e){
+        if(!Cheia()){
+            if(inicio == -1){
+                inicio = 0;
+                println(" Fila Cheia!  ");
+            }
+            fim++;
+            itens[fim] = e;
+            qtd++;
+        }
     }
 
-    function isEmpty() {
-        return items.length == 0;
+    this.remove = function(){
+        if(!QueueVazia()){
+            println(" Fila Vazia!  ");
+            inicio++;
+            qtd--;
+        }
     }
 
-    this.size = function () {
-        return items.length;
-    }
-
-    this.print = function () {
-        console.log(items.toString());
+    this.mostrar = function(element){
+        var elementos = " ";
+        for (var i = inicio; i <= fim; i++) {
+            elementos += itens[i] + " - " + element;
+        }
+        println(elementos);
     }
 }
